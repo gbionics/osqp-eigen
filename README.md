@@ -1,8 +1,8 @@
 # osqp-eigen
 
-|  General  | [![c++14](https://img.shields.io/badge/standard-C++14-blue.svg?style=flat&logo=c%2B%2B)](https://isocpp.org) [![License](https://img.shields.io/badge/License-BSD_3--Clause-orange.svg)](https://github.com/robotology/osqp-eigen/blob/master/LICENSE) |
+|  General  | [![c++14](https://img.shields.io/badge/standard-C++14-blue.svg?style=flat&logo=c%2B%2B)](https://isocpp.org) [![License](https://img.shields.io/badge/License-BSD_3--Clause-orange.svg)](https://github.com/gbionics/osqp-eigen/blob/master/LICENSE) |
 | :-------: | :----------------------------------------------------------: |
-| **CI/CD** | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a18710c10f1c4df19bc2759fd50e9cf5)](https://www.codacy.com/gh/robotology/osqp-eigen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=robotology/osqp-eigen&amp;utm_campaign=Badge_Grade) [![CI](https://github.com/robotology/osqp-eigen/workflows/C++%20CI%20Workflow/badge.svg)](https://github.com/robotology/osqp-eigen/workflows/C++%20CI%20Workflow/badge.svg) [![Azure](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/osqp-eigen-feedstock?branchName=master)](https://dev.azure.com/conda-forge/feedstock-builds/_build/results?buildId=341091&view=results) |
+| **CI/CD** | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a18710c10f1c4df19bc2759fd50e9cf5)](https://www.codacy.com/gh/gbionics/osqp-eigen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gbionics/osqp-eigen&amp;utm_campaign=Badge_Grade) [![CI](https://github.com/gbionics/osqp-eigen/workflows/C++%20CI%20Workflow/badge.svg)](https://github.com/gbionics/osqp-eigen/workflows/C++%20CI%20Workflow/badge.svg) [![Azure](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/osqp-eigen-feedstock?branchName=master)](https://dev.azure.com/conda-forge/feedstock-builds/_build/results?buildId=341091&view=results) |
 | **conda** | [![Conda Recipe](https://img.shields.io/badge/recipe-osqp--eigen-green.svg)](https://anaconda.org/conda-forge/osqp-eigen)  [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/osqp-eigen.svg)](https://anaconda.org/conda-forge/osqp-eigen)  [![Conda Version](https://img.shields.io/conda/vn/conda-forge/osqp-eigen.svg)](https://anaconda.org/conda-forge/osqp-eigen)  [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/osqp-eigen.svg)](https://anaconda.org/conda-forge/osqp-eigen) |
 
 
@@ -10,7 +10,7 @@
 Simple C++ wrapper for [osqp](http://osqp.readthedocs.io/en/latest/index.html) library.
 
 ## 📚 Documentation
-The documentation is available online at the accompanying [website](https://robotology.github.io/osqp-eigen).
+The documentation is available online at the accompanying [website](https://gbionics.github.io/osqp-eigen).
 
 
 ## 📄 Dependences
@@ -29,7 +29,7 @@ conda install -c conda-forge osqp-eigen
 
 1. Clone the repository
    ```
-   git clone https://github.com/robotology/osqp-eigen.git
+   git clone https://github.com/gbionics/osqp-eigen.git
    ```
 2. Build it
    ```
@@ -61,7 +61,7 @@ target_link_libraries(example OsqpEigen::OsqpEigen)
 If you prefer to use the [`bazel`](https://bazel.build/) build system, **osqp-eigen** is available in the Bazel Central Registry, so you can use it following the docs available at [`https://registry.bazel.build/modules/osqp-eigen`](https://registry.bazel.build/modules/osqp-eigen).
 
 ##  🐛 Bug reports and support
-All types of [issues](https://github.com/robotology/osqp-eigen/issues/new) are welcome.
+All types of [issues](https://github.com/gbionics/osqp-eigen/issues/new) are welcome.
 
 
 ## 🧩 Compatibility Policy
@@ -71,4 +71,4 @@ This project tries to avoid removing functionalities in minor releases, while fu
 ## 📝 License
 Materials in this repository are distributed under the following license:
 
-> All software is licensed under the BSD 3-Clause License. See [LICENSE](https://github.com/robotology/osqp-eigen/blob/master/LICENSE) file for details.
+> All software is licensed under the BSD 3-Clause License. See [LICENSE](https://github.com/gbionics/osqp-eigen/blob/master/LICENSE) file for details.

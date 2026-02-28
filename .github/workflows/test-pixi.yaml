@@ -48,7 +48,7 @@ jobs:
         rm pixi.lock
 
     # To use valgrind even with conda/pixi we still need to install libc6-dbg via apt on Debian-based distros
-    # See https://github.com/robotology/osqp-eigen/pull/171#issuecomment-2458149581
+    # See https://github.com/gbionics/osqp-eigen/pull/171#issuecomment-2458149581
     - name: Install libc6-dbg
       if: contains(matrix.os, 'ubuntu')
       run: |
