@@ -157,6 +157,7 @@ install_basic_package_files(${PROJECT_NAME}
 # with the ament index so the package is visible to ROS 2 tooling. 
 # Unfortunately, ament_package() cannot be used because it requires
 # PROJECT_NAME to match the package.xml name (osqp_eigen).
+# However, this has the benefit of not needing to call find_package.
 install(FILES package.xml DESTINATION share/osqp_eigen)
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen "")
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen
