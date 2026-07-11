@@ -153,20 +153,14 @@ install_basic_package_files(${PROJECT_NAME}
   NO_CHECK_REQUIRED_COMPONENTS_MACRO
   DEPENDENCIES ${OSQP_EIGEN_EXPORTED_DEPENDENCIES})
 
-find_package(ament_cmake QUIET)
-if ( ament_cmake_FOUND )
-  # When building in a ROS 2 workspace, install package.xml and register
-  # with the ament index so the package is visible to ROS 2 tooling. 
-  # Unfortunately, ament_package() cannot be used because it requires
-  # PROJECT_NAME to match the package.xml name (osqp_eigen).
-  install(FILES package.xml DESTINATION share/osqp_eigen)
-  file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen "")
-  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen
-    DESTINATION share/ament_index/resource_index/packages)
-else()
-  # Install package.xml to share
-  install(FILES package.xml DESTINATION share/cmake/osqp_eigen)
-endif()
+# When building in a ROS 2 workspace, install package.xml and register
+# with the ament index so the package is visible to ROS 2 tooling. 
+# Unfortunately, ament_package() cannot be used because it requires
+# PROJECT_NAME to match the package.xml name (osqp_eigen).
+install(FILES package.xml DESTINATION share/osqp_eigen)
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen "")
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen
+  DESTINATION share/ament_index/resource_index/packages)
 
 ## Testing
 include(AddOsqpEigenUnitTest)
