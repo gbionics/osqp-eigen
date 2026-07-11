@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>osqp-eigen</name>
+  <name>osqp_eigen</name>
   <version>0.11.0</version>
   <description>Simple Eigen-C++ wrapper for OSQP library</description>
   <maintainer email="tbd@tbd.tbd">tbd</maintainer>
