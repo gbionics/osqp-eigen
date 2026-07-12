@@ -153,8 +153,12 @@ install_basic_package_files(${PROJECT_NAME}
   NO_CHECK_REQUIRED_COMPONENTS_MACRO
   DEPENDENCIES ${OSQP_EIGEN_EXPORTED_DEPENDENCIES})
 
-# Install package.xml to share
-install(FILES package.xml DESTINATION share/cmake/osqp-eigen)
+# Install package.xml and register with the ament index 
+# so the package is visible to ROS 2 tooling. 
+install(FILES package.xml DESTINATION share/osqp_eigen)
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen "")
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ament_index_marker/osqp_eigen
+  DESTINATION share/ament_index/resource_index/packages)
 
 ## Testing
 include(AddOsqpEigenUnitTest)
