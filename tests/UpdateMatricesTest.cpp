@@ -19,17 +19,15 @@
 #define COUT_GTEST ANSI_TXT_GRN << GTEST_BOX // You could add the Default
 #define COUT_GTEST_MGT COUT_GTEST << ANSI_TXT_MGT
 
-Eigen::Matrix<c_float, 2, 2> H;
-Eigen::SparseMatrix<c_float> H_s;
-Eigen::Matrix<c_float, 3, 2> A;
-Eigen::SparseMatrix<c_float> A_s;
-Eigen::Matrix<c_float, 2, 1> gradient;
-Eigen::Matrix<c_float, 3, 1> lowerBound;
-Eigen::Matrix<c_float, 3, 1> upperBound;
-
-OsqpEigen::Solver solver;
-
-TEST_CASE("QPProblem - FirstRun")
+// Helper function to set up initial solver state
+static void setupInitialSolver(OsqpEigen::Solver& solver,
+                               Eigen::Matrix<c_float, 2, 2>& H,
+                               Eigen::SparseMatrix<c_float>& H_s,
+                               Eigen::Matrix<c_float, 3, 2>& A,
+                               Eigen::SparseMatrix<c_float>& A_s,
+                               Eigen::Matrix<c_float, 2, 1>& gradient,
+                               Eigen::Matrix<c_float, 3, 1>& lowerBound,
+                               Eigen::Matrix<c_float, 3, 1>& upperBound)
 {
     // hessian matrix
     H << 4, 0, 0, 2;
@@ -49,13 +47,28 @@ TEST_CASE("QPProblem - FirstRun")
     solver.data()->setNumberOfVariables(2);
     solver.data()->setNumberOfConstraints(3);
     solver.settings()->setScaling(0);
-    REQUIRE(solver.data()->setHessianMatrix(H_s));
-    REQUIRE(solver.data()->setGradient(gradient));
-    REQUIRE(solver.data()->setLinearConstraintsMatrix(A_s));
-    REQUIRE(solver.data()->setLowerBound(lowerBound));
-    REQUIRE(solver.data()->setUpperBound(upperBound));
+    solver.data()->setHessianMatrix(H_s);
+    solver.data()->setGradient(gradient);
+    solver.data()->setLinearConstraintsMatrix(A_s);
+    solver.data()->setLowerBound(lowerBound);
+    solver.data()->setUpperBound(upperBound);
+    solver.initSolver();
+}
 
-    REQUIRE(solver.initSolver());
+TEST_CASE("QPProblem - FirstRun")
+{
+    OsqpEigen::Solver solver;
+
+    Eigen::Matrix<c_float, 2, 2> H;
+    Eigen::SparseMatrix<c_float> H_s;
+    Eigen::Matrix<c_float, 3, 2> A;
+    Eigen::SparseMatrix<c_float> A_s;
+    Eigen::Matrix<c_float, 2, 1> gradient;
+    Eigen::Matrix<c_float, 3, 1> lowerBound;
+    Eigen::Matrix<c_float, 3, 1> upperBound;
+
+    setupInitialSolver(solver, H, H_s, A, A_s, gradient, lowerBound, upperBound);
+
     REQUIRE(solver.solveProblem() == OsqpEigen::ErrorExitFlag::NoError);
 
     auto solution = solver.getSolution();
@@ -65,6 +78,19 @@ TEST_CASE("QPProblem - FirstRun")
 
 TEST_CASE("QPProblem - SparsityConstant")
 {
+    OsqpEigen::Solver solver;
+
+    Eigen::Matrix<c_float, 2, 2> H;
+    Eigen::SparseMatrix<c_float> H_s;
+    Eigen::Matrix<c_float, 3, 2> A;
+    Eigen::SparseMatrix<c_float> A_s;
+    Eigen::Matrix<c_float, 2, 1> gradient;
+    Eigen::Matrix<c_float, 3, 1> lowerBound;
+    Eigen::Matrix<c_float, 3, 1> upperBound;
+
+    // Initialize solver with first run data
+    setupInitialSolver(solver, H, H_s, A, A_s, gradient, lowerBound, upperBound);
+
     // update hessian matrix
     H << 4, 0, 0, 2;
     H_s = H.sparseView();
@@ -78,11 +104,24 @@ TEST_CASE("QPProblem - SparsityConstant")
     auto solution = solver.getSolution();
     std::cout << COUT_GTEST_MGT << "Solution [" << solution(0) << " " << solution(1) << "]"
               << ANSI_TXT_DFT << std::endl;
-};
+}
 
 TEST_CASE("QPProblem - SparsityChange")
 {
-    // update hessian matrix
+    OsqpEigen::Solver solver;
+
+    Eigen::Matrix<c_float, 2, 2> H;
+    Eigen::SparseMatrix<c_float> H_s;
+    Eigen::Matrix<c_float, 3, 2> A;
+    Eigen::SparseMatrix<c_float> A_s;
+    Eigen::Matrix<c_float, 2, 1> gradient;
+    Eigen::Matrix<c_float, 3, 1> lowerBound;
+    Eigen::Matrix<c_float, 3, 1> upperBound;
+
+    // Initialize solver with first run data
+    setupInitialSolver(solver, H, H_s, A, A_s, gradient, lowerBound, upperBound);
+
+    // update hessian matrix with sparsity change
     H << 1, 1, 1, 2;
     H_s = H.sparseView();
     A << 1, 1, 1, 0.4, 0, 1;
@@ -95,4 +134,4 @@ TEST_CASE("QPProblem - SparsityChange")
     auto solution = solver.getSolution();
     std::cout << COUT_GTEST_MGT << "Solution [" << solution(0) << " " << solution(1) << "]"
               << ANSI_TXT_DFT << std::endl;
-};
+}

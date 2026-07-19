@@ -1,14 +1,9 @@
-[project]
+[workspace]
 name = "osqp-eigen"
-authors = ["Stefano Dafarra <stefano.dafarra@iit.it", "Giulio Romualdi <giulio.romualdi@iit.it>"]
-# As this version is currently ignored, we do not
-# waste effort in mantain it in synch with the value
-# specified in CMakeLists.txt
-version = "0.0.0"
+authors = ["Stefano Dafarra <stefano.dafarra@gbionics.ai", "Giulio Romualdi <giulio.romualdi@gbionics.ai>"]
 description = "Simple Eigen-C++ wrapper for OSQP library."
 channels = ["conda-forge"]
 platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
-
 
 [target.win.activation.env]
 CMAKE_INSTALL_PREFIX = "%CONDA_PREFIX%\\Library"
