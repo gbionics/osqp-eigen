@@ -123,7 +123,6 @@ endif()
 add_library(OsqpEigen::OsqpEigen ALIAS OsqpEigen)
 
 set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
-  VERSION ${PROJECT_VERSION}
   PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
 target_compile_features(${LIBRARY_TARGET_NAME} PUBLIC cxx_std_14)
