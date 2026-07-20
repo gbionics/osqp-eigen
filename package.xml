@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>osqp_eigen</name>
-  <version>0.11.1</version>
+  <version>0.11.2</version>
   <description>Simple Eigen-C++ wrapper for OSQP library</description>
   <maintainer email="giulio.romualdi@gbionics.ai">Giulio Romualdi</maintainer>
   <maintainer email="stefano.dafarra@gbionics.ai">Stefano Dafarra</maintainer>
